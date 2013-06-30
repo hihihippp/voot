@@ -2,11 +2,10 @@ require "voot/cue_list"
 
 module Voot
   class Vtt
-    attr_reader :path
-    attr_accessor :header
+    attr_accessor :header, :path
 
     def initialize(options = {})
-      @path = options.fetch(:path)
+      @path = options[:path]
       @header = options[:header]
     end
 
