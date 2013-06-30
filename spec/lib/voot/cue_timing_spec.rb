@@ -11,5 +11,19 @@ describe Voot::CueTiming do
     )
   end
 
-  its(:to_webvtt) { should == "00:01.000 --> 01:05.001" }
+  describe "#to_webvtt" do
+    context "when the timestamps do not have hours" do
+      its(:to_webvtt) { should == "00:01.000 --> 01:05.001" }
+    end
+
+    context "when the end timestamp has hours" do
+      let(:end_seconds) { 3601.1 }
+      its(:to_webvtt) { should == "00:01.000 --> 01:00:01.100" }
+    end
+  end
+
+  describe "#cover?" do
+    it { should cover 1.000 }
+    it { should cover 65.001 }
+  end
 end
