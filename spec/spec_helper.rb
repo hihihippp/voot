@@ -2,6 +2,7 @@ $:<< File.expand_path("../../lib", __FILE__)
 
 require "voot"
 require "tempfile"
+require "parslet/rig/rspec"
 
 Dir.glob(File.expand_path("../support/**/*.rb", __FILE__)) { |f| require f }
 

@@ -18,6 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = `git ls-files -- spec`.split("\n")
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "parslet"
+
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "guard-rspec"
   spec.add_development_dependency "guard-bundler"
