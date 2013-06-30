@@ -1,5 +1,7 @@
 # Voot
 
+[![Build Status](https://travis-ci.org/minifast/voot.png)](https://travis-ci.org/minifast/voot) [![Code Climate](https://codeclimate.com/github/minifast/voot.png)](https://codeclimate.com/github/minifast/voot)
+
 Voot lets you read and write WebVTT files with great ease.
 
 ## Installation
