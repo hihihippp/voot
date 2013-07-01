@@ -3,7 +3,7 @@ require "spec_helper"
 describe Voot::Cue do
   let(:identifier) { "taco massacre" }
   let(:payload) { "tasty" }
-  let(:cue_timing) { Voot::CueTiming.new(start_seconds: 0, end_seconds: 1) }
+  let(:cue_timing) { create_timing(0, 1) }
 
   subject(:cue) do
     Voot::Cue.new(
@@ -33,13 +33,13 @@ describe Voot::Cue do
 
   describe "#to_webvtt" do
     context "when the identifier is set" do
-      its(:to_webvtt) { should == "taco massacre\n00:00.000 --> 00:01.000\ntasty" }
+      its(:to_webvtt) { should == "taco massacre\n00:00:00.000 --> 00:00:01.000\ntasty" }
     end
 
     context "when the identifier is not set" do
       let(:identifier) { nil }
 
-      its(:to_webvtt) { should == "00:00.000 --> 00:01.000\ntasty" }
+      its(:to_webvtt) { should == "00:00:00.000 --> 00:00:01.000\ntasty" }
     end
   end
 end

@@ -15,11 +15,9 @@ module Voot
     end
 
     def to_webvtt
-      if has_identifier?
-        "#{identifier}\n#{cue_timing.to_webvtt}\n#{payload}"
-      else
-        "#{cue_timing.to_webvtt}\n#{payload}"
-      end
+      output = ""
+      output << identifier << "\n" if has_identifier?
+      output << cue_timing.to_webvtt << "\n" << payload
     end
   end
 end

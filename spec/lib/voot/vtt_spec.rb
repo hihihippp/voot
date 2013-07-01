@@ -65,7 +65,7 @@ describe Voot::Vtt do
     context "when there is a cue" do
       before { vtt.cues << create_cue("not the drill!", 0, 2) }
 
-      its(:to_webvtt) { should == "WEBVTT\n\n00:00.000 --> 00:02.000\nnot the drill!" }
+      its(:to_webvtt) { should == "WEBVTT\n\n00:00:00.000 --> 00:00:02.000\nnot the drill!" }
     end
   end
 end

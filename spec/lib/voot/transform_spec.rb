@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Voot::Transform do
-  let(:cue_timing) { Voot::CueTiming.new(start_seconds: 61.001, end_seconds: 3661.001) }
+  let(:cue_timing) { create_timing(61.001, 3661.001) }
   let(:parser) { Voot::Parser.new }
 
   subject(:transformed) { Voot::Transform.new.apply(parsed_input) }

@@ -3,20 +3,20 @@ require "parslet"
 module Voot
   class Transform < Parslet::Transform
     rule(:minutes => simple(:minutes), :seconds => simple(:seconds), :subseconds => simple(:subseconds)) do
-      (minutes.to_i * 60) + seconds.to_i + (subseconds.to_i / 1000.0)
+      Voot::Timestamp.new((minutes.to_i * 60) + seconds.to_i + (subseconds.to_i / 1000.0))
     end
 
     rule(:hours => simple(:hours), :minutes => simple(:minutes), :seconds => simple(:seconds), :subseconds => simple(:subseconds)) do
-      (hours.to_i * 3600) + (minutes.to_i * 60) + seconds.to_i + (subseconds.to_i / 1000.0)
+      Voot::Timestamp.new((hours.to_i * 3600) + (minutes.to_i * 60) + seconds.to_i + (subseconds.to_i / 1000.0))
     end
 
-    rule(:start => simple(:start), :stop => simple(:stop), :payload => simple(:payload)) do
-      cue_timing = Voot::CueTiming.new(start_seconds: start, end_seconds: stop)
+    rule(:start => simple(:start_timestamp), :stop => simple(:stop_timestamp), :payload => simple(:payload)) do
+      cue_timing = Voot::CueTiming.new(start_timestamp, stop_timestamp)
       Voot::Cue.new(cue_timing: cue_timing, payload: payload.to_s)
     end
 
-    rule(:start => simple(:start), :stop => simple(:stop), :payload => simple(:payload), :identifier => simple(:identifier)) do
-      cue_timing = Voot::CueTiming.new(start_seconds: start, end_seconds: stop)
+    rule(:start => simple(:start_timestamp), :stop => simple(:stop_timestamp), :payload => simple(:payload), :identifier => simple(:identifier)) do
+      cue_timing = Voot::CueTiming.new(start_timestamp, stop_timestamp)
       Voot::Cue.new(cue_timing: cue_timing, payload: payload.to_s, identifier: identifier.to_s)
     end
 
