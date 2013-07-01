@@ -13,7 +13,7 @@ describe Voot do
     end
 
     context "when the file does not contain a webvtt header" do
-      before { File.write(voot_path, "taco thursdays yo") }
+      before { File.open(voot_path, "w") { |file| file << "taco thursdays yo" } }
 
       it "fails to parse" do
         expect { Voot.load(voot_path) }.to raise_error(Parslet::ParseFailed)
@@ -21,7 +21,7 @@ describe Voot do
     end
 
     context "when the file contains a webvtt header" do
-      before { File.write(voot_path, "WEBVTT") }
+      before { File.open(voot_path, "w") { |file| file << "WEBVTT" } }
 
       its(:cues) { should be_empty }
       its(:header) { should be_nil }
@@ -29,13 +29,13 @@ describe Voot do
     end
 
     context "when the file contains a header" do
-      before { File.write(voot_path, "WEBVTT bob ross classics") }
+      before { File.open(voot_path, "w") { |file| file << "WEBVTT presents bob ross classics" } }
 
-      its(:header) { should == "bob ross classics" }
+      its(:header) { should == "presents bob ross classics" }
     end
 
     context "when the file contains a junk-filled header" do
-      before { File.write(voot_path, "WEBVTT\ni liek ppokemans") }
+      before { File.open(voot_path, "w") { |file| file << "WEBVTT\ni liek ppokemans" } }
 
       it "fails to parse" do
         expect { Voot.load(voot_path) }.to raise_error(Parslet::ParseFailed)
@@ -43,7 +43,7 @@ describe Voot do
     end
 
     context "when the file contains cues" do
-      before { File.write(voot_path, "WEBVTT\n\n00:00.000 --> 00:00.000\ndrugboat") }
+      before { File.open(voot_path, "w") { |file| file << "WEBVTT\n\n00:00.000 --> 00:00.000\ndrugboat" } }
 
       it { should have(1).cues }
     end

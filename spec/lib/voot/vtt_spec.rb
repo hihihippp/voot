@@ -19,7 +19,7 @@ describe Voot::Vtt do
     context "when the file exists" do
       let(:pesky_user_data) { "hey guys tacos are great right" }
 
-      before { File.write(vtt_path, pesky_user_data) }
+      before { File.open(vtt_path, "w") { |file| file << pesky_user_data } }
 
       it "clobbers the file content" do
         expect do
