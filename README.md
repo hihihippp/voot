@@ -4,6 +4,16 @@
 
 Voot lets you read and write WebVTT files with great ease.
 
+## Usage
+
+    > vtt = Voot.load("~/Movies/My Indian Films/manty-poothon.vtt")
+    => #<Voot::Vtt>
+    > vtt.cues.length
+    => 1
+    > vtt.cues.first.payload
+    => "You are those knights and whatever, let me marry Srivani or we will dance"
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
