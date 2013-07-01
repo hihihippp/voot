@@ -10,7 +10,7 @@ describe Voot::Timestamp do
       it { should == seconds }
     end
 
-    context "when comparing against another timestamp" do
+    context "when comparing against any object that converts to a float" do
       let(:other) { double(:timestamp, to_f: seconds) }
 
       it { should == other }
