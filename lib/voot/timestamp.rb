@@ -8,12 +8,10 @@ module Voot
       @seconds_since_origin = seconds_since_origin.to_f.round(3)
     end
 
+    alias :to_f :seconds_since_origin
+
     def <=>(other)
-      if other.is_a?(Numeric)
-        seconds_since_origin <=> other
-      else
-        seconds_since_origin <=> other.seconds_since_origin
-      end
+      self.to_f <=> other.to_f
     end
 
     def hours

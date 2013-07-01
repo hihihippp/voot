@@ -11,7 +11,7 @@ describe Voot::Timestamp do
     end
 
     context "when comparing against another timestamp" do
-      let(:other) { double(:timestamp, seconds_since_origin: seconds) }
+      let(:other) { double(:timestamp, to_f: seconds) }
 
       it { should == other }
     end
